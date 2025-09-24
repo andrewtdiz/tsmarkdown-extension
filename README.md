@@ -1,5 +1,7 @@
 # TS Markdown Language VS Code Extension
 
+![TS Markdown Extension](./EmbedImage.png)
+
 This VS Code extension provides support for the tsmd language.
 
 ### General features
