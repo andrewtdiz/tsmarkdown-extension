@@ -1,0 +1,138 @@
+{
+  "name": "tsmarkdown-extension",
+  "displayName": "TS markdown Extension",
+  "description": "Syntax highlighting and language support for TS markdown files",
+  "version": "1.0.0",
+  "publisher": "andrewtdiz",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Syntax Highlighters",
+    "Snippets"
+  ],
+  "keywords": [
+    "tsmarkdown",
+    "markdown",
+    "typescript",
+    "md",
+    "mdx",
+    "template"
+  ],
+  "activationEvents": [
+    "onLanguage:tsmd"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "tsmarkdown",
+        "aliases": [
+          "TS markdown",
+          "tsmarkdown"
+        ],
+        "extensions": [
+          ".mdx"
+        ],
+        "configuration": "./language-configuration.json",
+        "icon": {
+          "light": "./icons/tsmarkdown-light.svg",
+          "dark": "./icons/tsmarkdown-dark.svg"
+        }
+      }
+    ],
+    "grammars": [
+      {
+        "language": "tsmarkdown",
+        "scopeName": "text.html.markdown.mdx.tsmarkdown",
+        "path": "./syntaxes/tsmd.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "tsmarkdown",
+        "path": "./snippets/tsmd.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "tsmd.compile",
+        "title": "Compile TS markdown File",
+        "category": "TSmd"
+      },
+      {
+        "command": "tsmd.execute",
+        "title": "Execute TS markdown Template",
+        "category": "TSmd"
+      },
+      {
+        "command": "tsmd.preview",
+        "title": "Preview TS markdown Output",
+        "category": "TSmd"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "when": "resourceExtname == .tsmd",
+          "command": "tsmd.compile",
+          "group": "tsmd"
+        },
+        {
+          "when": "resourceExtname == .tsmd",
+          "command": "tsmd.execute",
+          "group": "tsmd"
+        },
+        {
+          "when": "resourceExtname == .tsmd",
+          "command": "tsmd.preview",
+          "group": "tsmd"
+        }
+      ],
+      "explorer/context": [
+        {
+          "when": "resourceExtname == .tsmd",
+          "command": "tsmd.compile",
+          "group": "tsmd"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "TS markdown",
+      "properties": {
+        "tsmd.compiler.outputDirectory": {
+          "type": "string",
+          "default": "./dist",
+          "description": "Output directory for compiled TS markdown files"
+        },
+        "tsmd.preview.port": {
+          "type": "number",
+          "default": 3000,
+          "description": "Port for preview server"
+        },
+        "tsmd.syntax.enableInterpolationHighlighting": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable syntax highlighting for {{ }} interpolations"
+        },
+        "tsmd.syntax.enableConditionalHighlighting": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable syntax highlighting for conditional blocks"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.80.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {}
+}
