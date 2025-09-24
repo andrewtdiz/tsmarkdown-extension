@@ -24,10 +24,14 @@
     "mdx",
     "template"
   ],
-  "activationEvents": ["onLanguage:tsmd"],
+  "activationEvents": [
+    "onLanguage:tsmd"
+  ],
   "main": "./out/extension.js",
   "contributes": {
-    "activationEvents": ["onLanguage:tsmd"],
+    "activationEvents": [
+      "onLanguage:tsmd"
+    ],
     "languages": [
       {
         "id": "tsmd",
@@ -35,7 +39,9 @@
           "TS markdown",
           "tsmarkdown"
         ],
-        "extensions": [ ".tsmd"],
+        "extensions": [
+          ".tsmd"
+        ],
         "configuration": "./language-configuration.json",
         "icon": {
           "light": "./tsmd-logo.png",
@@ -46,14 +52,8 @@
     "grammars": [
       {
         "language": "tsmd",
-        "scopeName": "text.html.markdown.mdx.tsmd",
+        "scopeName": "source.tsmd",
         "path": "./syntaxes/tsmd.tmLanguage.json"
-      }
-    ],
-    "snippets": [
-      {
-        "language": "tsmarkdown",
-        "path": "./snippets/tsmd.json"
       }
     ]
   },
@@ -66,8 +66,11 @@
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
-    "@types/vscode": "^1.80.0",
-    "typescript": "^5.0.0"
+    "@types/vscode": "^1.104.0",
+    "typescript": "^5.9.2",
+    "vscode-languageclient": "^9.0.1",
+    "vscode-languageserver": "^9.0.1",
+    "vscode-languageserver-textdocument": "^1.0.12"
   },
   "preview": false,
   "dependencies": {}

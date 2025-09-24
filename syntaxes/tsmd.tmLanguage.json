@@ -1,5 +1,5 @@
 {
-  "displayName": "TSmd",
+  "displayName": "TypeScript-Markdown",
   "name": "tsmd",
   "scopeName": "source.tsmd",
   "fileTypes": [
@@ -8,6 +8,15 @@
   "patterns": [
     {
       "include": "#tsm-block"
+    },
+    {
+      "include": "source.tsx#directives"
+    },
+    {
+      "include": "source.tsx#statements"
+    },
+    {
+      "include": "source.tsx#shebang"
     },
     {
       "include": "#markdown-heading"
@@ -112,10 +121,13 @@
   "repository": {
     "tsm-block": {
       "name": "meta.tsm-block.tsmd",
-      "begin": "\\breturn\\s+\\(",
+      "begin": "(\\breturn\\s+\\(|=>\\s*\\()",
       "beginCaptures": {
-        "0": {
+        "1": {
           "name": "keyword.control.return.tsmd"
+        },
+        "2": {
+          "name": "storage.type.function.arrow.tsmd"
         }
       },
       "end": "\\)",
@@ -125,6 +137,9 @@
         }
       },
       "patterns": [
+        {
+          "include": "#tsm-markdown"
+        },
         {
           "include": "#tsm-interpolation"
         },
@@ -136,9 +151,6 @@
         },
         {
           "include": "#tsm-comment"
-        },
-        {
-          "include": "#tsm-markdown"
         }
       ]
     },
@@ -161,7 +173,19 @@
           "include": "#tsm-conditional-block"
         },
         {
-          "include": "source.ts"
+          "include": "#tsm-component"
+        },
+        {
+          "include": "#tsm-xml-group"
+        },
+        {
+          "include": "#tsm-comment"
+        },
+        {
+          "include": "#tsm-markdown"
+        },
+        {
+          "include": "#tsm-expression"
         }
       ]
     },
@@ -194,6 +218,127 @@
         },
         {
           "include": "#tsm-markdown"
+        }
+      ]
+    },
+    "tsm-expression": {
+      "patterns": [
+        {
+          "include": "source.tsx#expression"
+        },
+        {
+          "include": "source.tsx#expression-operators"
+        },
+        {
+          "include": "source.tsx#ternary-expression"
+        },
+        {
+          "include": "source.tsx#function-call"
+        },
+        {
+          "include": "source.tsx#function-declaration"
+        },
+        {
+          "include": "source.tsx#function-expression"
+        },
+        {
+          "include": "source.tsx#arrow-function"
+        },
+        {
+          "include": "source.tsx#import-declaration"
+        },
+        {
+          "include": "source.tsx#export-declaration"
+        },
+        {
+          "include": "source.tsx#class-declaration"
+        },
+        {
+          "include": "source.tsx#interface-declaration"
+        },
+        {
+          "include": "source.tsx#enum-declaration"
+        },
+        {
+          "include": "source.tsx#var-expr"
+        },
+        {
+          "include": "source.tsx#variable-initializer"
+        },
+        {
+          "include": "source.tsx#binding-element"
+        },
+        {
+          "include": "source.tsx#object-literal"
+        },
+        {
+          "include": "source.tsx#array-literal"
+        },
+        {
+          "include": "source.tsx#type-annotation"
+        },
+        {
+          "include": "source.tsx#type-parameters"
+        },
+        {
+          "include": "source.tsx#type-object"
+        },
+        {
+          "include": "source.tsx#template"
+        },
+        {
+          "include": "source.tsx#template-substitution-element"
+        },
+        {
+          "include": "source.tsx#string"
+        },
+        {
+          "include": "source.tsx#numeric-literal"
+        },
+        {
+          "include": "source.tsx#boolean-literal"
+        },
+        {
+          "include": "source.tsx#null-literal"
+        },
+        {
+          "include": "source.tsx#undefined-literal"
+        },
+        {
+          "include": "source.tsx#regex"
+        },
+        {
+          "include": "source.tsx#return-type"
+        },
+        {
+          "include": "source.tsx#control-statement"
+        },
+        {
+          "include": "source.tsx#if-statement"
+        },
+        {
+          "include": "source.tsx#switch-statement"
+        },
+        {
+          "include": "source.tsx#for-loop"
+        },
+        {
+          "include": "source.tsx#comment"
+        },
+        {
+          "include": "source.tsx#docblock"
+        },
+        {
+          "include": "source.tsx#jsx"
+        },
+        {
+          "include": "source.tsx#jsx-tag"
+        },
+        {
+          "include": "source.tsx#jsx-children"
+        },
+        {
+          "include": "source.tsx#jsx-tag-attributes"
         }
       ]
     },
@@ -274,7 +419,7 @@
           "end": "\\}",
           "patterns": [
             {
-              "include": "source.ts"
+              "include": "#tsm-expression"
             }
           ]
         }
@@ -331,34 +476,78 @@
     "tsm-markdown": {
       "patterns": [
         {
-          "include": "#markdown-heading"
+          "name": "markup.heading.1.tsmd",
+          "match": "^#{1}\\s+(.+)$"
         },
         {
-          "include": "#markdown-list"
+          "name": "markup.heading.2.tsmd",
+          "match": "^#{2}\\s+(.+)$"
         },
         {
-          "include": "#markdown-ordered-list"
+          "name": "markup.heading.3.tsmd",
+          "match": "^#{3}\\s+(.+)$"
         },
         {
-          "include": "#markdown-blockquote"
+          "name": "markup.heading.4.tsmd",
+          "match": "^#{4}\\s+(.+)$"
         },
         {
-          "include": "#markdown-code-fence"
+          "name": "markup.heading.5.tsmd",
+          "match": "^#{5}\\s+(.+)$"
         },
         {
-          "include": "#markdown-inline-code"
+          "name": "markup.heading.6.tsmd",
+          "match": "^#{6}\\s+(.+)$"
         },
         {
-          "include": "#markdown-strong"
+          "name": "markup.bold.tsmd",
+          "match": "\\*\\*([^*]+)\\*\\*"
         },
         {
-          "include": "#markdown-emphasis"
+          "name": "markup.italic.tsmd",
+          "match": "\\*([^*]+)\\*"
         },
         {
-          "include": "#markdown-link"
+          "name": "markup.inline.raw.tsmd",
+          "match": "`([^`]+)`"
         },
         {
-          "include": "#markdown-image"
+          "name": "markup.underline.link.tsmd",
+          "match": "\\[([^\\]]+)\\]\\(([^)]+)\\)"
+        },
+        {
+          "name": "markup.underline.link.image.tsmd",
+          "match": "!\\[([^\\]]*)\\]\\(([^)]+)\\)"
+        },
+        {
+          "name": "markup.list.unnumbered.tsmd",
+          "match": "^\\s*[-*+]\\s+(.+)$"
+        },
+        {
+          "name": "markup.list.numbered.tsmd",
+          "match": "^\\s*\\d+\\.\\s+(.+)$"
+        },
+        {
+          "name": "markup.quote.tsmd",
+          "match": "^\\s*>\\s*(.+)$"
+        },
+        {
+          "name": "markup.raw.block.tsmd",
+          "begin": "```",
+          "end": "```"
+        },
+        {
+          "name": "markup.raw.block.tsmd",
+          "begin": "~~~",
+          "end": "~~~"
+        },
+        {
+          "name": "markup.emphasis.quotes.tsmd",
+          "match": "\"([^\"]+)\""
+        },
+        {
+          "name": "markup.emphasis.single-quotes.tsmd",
+          "match": "'([^']+)'"
         }
       ]
     },
@@ -828,6 +1017,9 @@
       "captures": {
         "1": {
           "name": "punctuation.definition.list.begin.tsx"
+        },
+        "2": {
+          "name": "punctuation.whitespace.list.tsx"
         },
         "3": {
           "name": "markup.list.item.tsx"

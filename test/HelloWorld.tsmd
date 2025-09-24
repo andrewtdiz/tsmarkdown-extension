@@ -1,0 +1,7 @@
+function HelloWorld() {
+    const greeting = "Hello"
+    
+    return (
+        {{ greeting }}, World!
+    )
+}
