@@ -127,6 +127,8 @@
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
+    "vscode:package": "vsce package --no-dependencies",
+    "vscode:publish": "vsce publish --no-dependencies",
     "watch": "tsc -watch -p ./"
   },
   "devDependencies": {
