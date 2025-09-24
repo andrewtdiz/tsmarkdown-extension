@@ -12,5 +12,3 @@ This VS Code extension provides support for the tsmd language.
 ## Documentation
 
 See our [documentation](https://tsmarkdown.dev)
-
-For any issues, feature requests, or contributions, please reach out at contact@boundaryml.com
