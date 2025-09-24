@@ -2,8 +2,9 @@
   "name": "tsmarkdown-extension",
   "displayName": "TS markdown Extension",
   "description": "Syntax highlighting and language support for TS markdown files",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "TSMarkdown",
+  "icon": "tsmd-logo.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/andrewtdiz/tsmarkdown-extension"
