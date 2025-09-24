@@ -1,8 +1,8 @@
 {
   "name": "tsmarkdown-extension",
-  "displayName": "TS markdown Extension",
+  "displayName": "TS markdown",
   "description": "Syntax highlighting and language support for TS markdown files",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "publisher": "TSMarkdown",
   "icon": "tsmd-logo.png",
   "repository": {
@@ -24,11 +24,10 @@
     "mdx",
     "template"
   ],
-  "activationEvents": [
-    "onLanguage:tsmd"
-  ],
+  "activationEvents": ["onLanguage:tsmd"],
   "main": "./out/extension.js",
   "contributes": {
+    "activationEvents": ["onLanguage:tsmd"],
     "languages": [
       {
         "id": "tsmd",
@@ -36,9 +35,7 @@
           "TS markdown",
           "tsmarkdown"
         ],
-        "extensions": [
-          ".tsmd"
-        ],
+        "extensions": [ ".tsmd"],
         "configuration": "./language-configuration.json",
         "icon": {
           "light": "./tsmd-logo.png",
@@ -72,5 +69,6 @@
     "@types/vscode": "^1.80.0",
     "typescript": "^5.0.0"
   },
+  "preview": false,
   "dependencies": {}
 }
