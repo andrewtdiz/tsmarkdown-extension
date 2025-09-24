@@ -1,0 +1,13 @@
+{
+    "iconDefinitions": {
+        "_tsmdFileIcon": {
+            "iconPath": "../resources/my-icon.svg"
+        }
+    },
+    "fileExtensions": {
+        "tsmdext": "_tsmdFileIcon"
+    },
+    "languageIds": {
+        "tsmdLang": "_tsmdFileIcon"
+    }
+}
