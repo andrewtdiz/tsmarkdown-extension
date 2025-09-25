@@ -19,36 +19,6 @@
       "include": "source.tsx#shebang"
     },
     {
-      "include": "#markdown-heading"
-    },
-    {
-      "include": "#markdown-list"
-    },
-    {
-      "include": "#markdown-ordered-list"
-    },
-    {
-      "include": "#markdown-blockquote"
-    },
-    {
-      "include": "#markdown-code-fence"
-    },
-    {
-      "include": "#markdown-inline-code"
-    },
-    {
-      "include": "#markdown-strong"
-    },
-    {
-      "include": "#markdown-emphasis"
-    },
-    {
-      "include": "#markdown-link"
-    },
-    {
-      "include": "#markdown-image"
-    },
-    {
       "include": "#comment-block"
     },
     {
@@ -121,7 +91,7 @@
   "repository": {
     "tsm-block": {
       "name": "meta.tsm-block.tsmd",
-      "begin": "(\\breturn\\s+\\(|=>\\s*\\()",
+      "begin": "(\\breturn\\s+\\(\\s*\\n?|=>\\s*\\()",
       "beginCaptures": {
         "1": {
           "name": "keyword.control.return.tsmd"
@@ -170,6 +140,9 @@
       },
       "patterns": [
         {
+          "include": "#tsm-null-sentinel"
+        },
+        {
           "include": "#tsm-conditional-block"
         },
         {
@@ -191,10 +164,13 @@
     },
     "tsm-conditional-block": {
       "name": "meta.conditional-block.tsmd",
-      "begin": "\\?\\s*\\(",
+      "begin": "(\\?|&&|!)\\s*\\(",
       "beginCaptures": {
         "0": {
           "name": "punctuation.definition.conditional.begin.tsmd"
+        },
+        "1": {
+          "name": "keyword.operator.conditional.tsmd"
         }
       },
       "end": "\\)",
@@ -353,16 +329,13 @@
           "name": "entity.name.tag.component.tsmd"
         }
       },
-      "end": "(/>)|(</@([A-Za-z_][A-Za-z0-9_]*>)",
+      "end": "(/>)|(</@\\1>)",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.tag.self-closing.end.tsmd"
         },
         "2": {
           "name": "punctuation.definition.tag.end.tsmd"
-        },
-        "3": {
-          "name": "entity.name.tag.component.tsmd"
         }
       },
       "patterns": [
@@ -436,16 +409,13 @@
           "name": "entity.name.tag.xml-group.tsmd"
         }
       },
-      "end": "(/>)|(</([A-Za-z_][A-Za-z0-9_]*)>)",
+      "end": "(/>)|(</\\1>)",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.tag.self-closing.end.tsmd"
         },
         "2": {
           "name": "punctuation.definition.tag.end.tsmd"
-        },
-        "3": {
-          "name": "entity.name.tag.xml-group.tsmd"
         }
       },
       "patterns": [
@@ -472,6 +442,10 @@
     "tsm-comment": {
       "name": "comment.line.double-slash.tsmd",
       "match": "^\\s*//.*$"
+    },
+    "tsm-null-sentinel": {
+      "name": "keyword.control.null-sentinel.tsmd",
+      "match": "\\bnull\\b"
     },
     "tsm-markdown": {
       "patterns": [
@@ -548,6 +522,22 @@
         {
           "name": "markup.emphasis.single-quotes.tsmd",
           "match": "'([^']+)'"
+        },
+        {
+          "name": "markup.whitespace.preserved.tsmd",
+          "match": "^\\s+$"
+        },
+        {
+          "name": "markup.whitespace.indentation.tsmd",
+          "match": "^(\\s+)(.+)$",
+          "captures": {
+            "1": {
+              "name": "punctuation.whitespace.indentation.tsmd"
+            },
+            "2": {
+              "name": "markup.content.tsmd"
+            }
+          }
         }
       ]
     },
