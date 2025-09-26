@@ -10,7 +10,7 @@
     "url": "https://github.com/andrewtdiz/tsmarkdown-extension"
   },
   "engines": {
-    "vscode": "^1.80.0"
+    "vscode": "^1.104.0"
   },
   "categories": [
     "Programming Languages",
