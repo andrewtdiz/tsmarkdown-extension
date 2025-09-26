@@ -17,6 +17,7 @@
     "return-markdown": {
       "name": "meta.return.markdown.tsmd",
       "begin": "(\\breturn)(\\s*\\()",
+      "contentName": "text.html.markdown.tsmd",
       "beginCaptures": {
         "1": {
           "name": "keyword.control.return.tsmd"
