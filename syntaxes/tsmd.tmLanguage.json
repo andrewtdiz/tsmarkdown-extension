@@ -32,9 +32,13 @@
         }
       },
       "contentName": "text.html.markdown.tsmd",
+      "applyEndPatternLast": 1,
       "patterns": [
         {
           "include": "#embedded-typescript"
+        },
+        {
+          "include": "#markdown-parentheses"
         },
         {
           "include": "text.html.markdown"
@@ -58,6 +62,31 @@
       "patterns": [
         {
           "include": "source.ts"
+        }
+      ]
+    },
+    "markdown-parentheses": {
+      "begin": "\\(",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.group.begin.tsmd"
+        }
+      },
+      "end": "\\)",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.group.end.tsmd"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#embedded-typescript"
+        },
+        {
+          "include": "#markdown-parentheses"
+        },
+        {
+          "include": "text.html.markdown"
         }
       ]
     }
