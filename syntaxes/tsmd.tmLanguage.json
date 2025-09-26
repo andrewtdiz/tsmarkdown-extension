@@ -16,7 +16,7 @@
   "repository": {
     "return-markdown": {
       "name": "meta.return.markdown.tsmd",
-      "begin": "(\\breturn)(\\s*\\()",
+      "begin": "(\\breturn)(\\s*\\()(?![^\\n]*\\S)",
       "contentName": "text.html.markdown.tsmd",
       "beginCaptures": {
         "1": {
@@ -26,10 +26,14 @@
           "name": "punctuation.section.group.begin.tsmd"
         }
       },
-      "end": "(\\))",
+      "applyEndPatternLast": true,
+      "end": "(?m:^(\\s*\\))(\\s*[;,])?)",
       "endCaptures": {
         "1": {
           "name": "punctuation.section.group.end.tsmd"
+        },
+        "2": {
+          "name": "punctuation.terminator.statement.tsmd"
         }
       },
       "patterns": [
