@@ -13,10 +13,33 @@
       "include": "source.ts"
     }
   ],
+  "injections": {
+    "meta.return.markdown.tsmd - meta.embedded.block.ts.tsmd": {
+      "patterns": [
+        {
+          "include": "text.html.markdown"
+        }
+      ]
+    },
+    "meta.parentheses.markdown.tsmd - meta.embedded.block.ts.tsmd": {
+      "patterns": [
+        {
+          "include": "text.html.markdown"
+        }
+      ]
+    },
+    "meta.component.tsmd - meta.embedded.block.ts.tsmd": {
+      "patterns": [
+        {
+          "include": "text.html.markdown"
+        }
+      ]
+    }
+  },
   "repository": {
     "return-markdown-block": {
       "name": "meta.return.markdown.tsmd",
-      "begin": "(\\breturn)(\\s*)(\\()",
+      "begin": "(\\breturn)(\\s*)(\\()(?=\\s*(?:\\r?\\n|$))",
       "beginCaptures": {
         "1": {
           "name": "keyword.control.flow.ts"
@@ -38,10 +61,10 @@
           "include": "#embedded-typescript"
         },
         {
-          "include": "#markdown-parentheses"
+          "include": "#component-element"
         },
         {
-          "include": "text.html.markdown"
+          "include": "#markdown-parentheses"
         }
       ]
     },
@@ -65,6 +88,112 @@
         }
       ]
     },
+    "component-element": {
+      "name": "meta.component.tsmd",
+      "begin": "<@([A-Za-z_][A-Za-z0-9_-]*(?:\\.[A-Za-z_][A-Za-z0-9_-]*)*)",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.tag.begin.tsmd"
+        },
+        "1": {
+          "name": "entity.name.tag.component.tsmd"
+        }
+      },
+      "end": "(/>)|(</@([A-Za-z_][A-Za-z0-9_-]*(?:\\.[A-Za-z_][A-Za-z0-9_-]*)*)>)",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.self-closing.end.tsmd"
+        },
+        "2": {
+          "name": "punctuation.definition.tag.end.tsmd"
+        },
+        "3": {
+          "name": "entity.name.tag.component.tsmd"
+        }
+      },
+      "applyEndPatternLast": 1,
+      "contentName": "text.html.markdown",
+      "patterns": [
+        {
+          "include": "#component-attributes"
+        },
+        {
+          "include": "#embedded-typescript"
+        },
+        {
+          "include": "#component-element"
+        }
+      ]
+    },
+    "component-attributes": {
+      "name": "meta.component.attributes.tsmd",
+      "patterns": [
+        {
+          "name": "entity.other.attribute-name.tsmd",
+          "match": "\\b([A-Za-z_][A-Za-z0-9_-]*)\\s*(?==)"
+        },
+        {
+          "name": "string.quoted.double.tsmd",
+          "begin": "\"",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.tsmd"
+            }
+          },
+          "end": "\"",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.tsmd"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#embedded-typescript"
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.single.tsmd",
+          "begin": "'",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.tsmd"
+            }
+          },
+          "end": "'",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.tsmd"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#embedded-typescript"
+            }
+          ]
+        },
+        {
+          "name": "meta.component.expression.attribute.tsmd",
+          "begin": "\\{",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.group.begin.tsmd"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.group.end.tsmd"
+            }
+          },
+          "patterns": [
+            {
+              "include": "source.ts"
+            }
+          ]
+        }
+      ]
+    },
     "markdown-parentheses": {
       "name": "meta.parentheses.markdown.tsmd",
       "begin": "\\(",
@@ -85,10 +214,10 @@
           "include": "#embedded-typescript"
         },
         {
-          "include": "#markdown-parentheses"
+          "include": "#component-element"
         },
         {
-          "include": "text.html.markdown"
+          "include": "#markdown-parentheses"
         }
       ]
     }
