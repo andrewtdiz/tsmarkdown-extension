@@ -1,5 +1,4 @@
-import * as path from 'path';
-import { workspace, ExtensionContext } from 'vscode';
+import { ExtensionContext } from 'vscode';
 
 
 export function activate(context: ExtensionContext) {
